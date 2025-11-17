@@ -1,15 +1,13 @@
 class Solution {
 public:
     int reverseBits(int n) {
-        int pw=31;
-        int ans=0;
-        while(n){
-            int cbit=n&(1);
-            ans+=cbit*pow(2,pw);
-           
-            pw--;
-            n=n>>1;
+        int res = 0;
+        for(int i = 0; i < 32; i++){
+            res = res << 1;
+            res = res | (n & 1);
+            n = n >>1;
         }
-        return ans;
+        return res;
+        
     }
 };
