@@ -8,7 +8,7 @@ public:
         return true;
     }
     void makeres(string &s, int ind, vector<vector<string>>& r,
-                 vector<string> t) {
+                 vector<string> &t) {
         if (ind == s.length()) {
             r.push_back(t);
             return;
