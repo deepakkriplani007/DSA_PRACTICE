@@ -21,11 +21,17 @@ public:
         else if (root->val == val)
             return root;
         else if (root->val > val) {
-                root->left= insertIntoBST(root->left, val);
-           
+            if (root->left != NULL) {
+                TreeNode* p = insertIntoBST(root->left, val);
+            }else{
+                root->left=new TreeNode(val);
+            }
         } else {
-                root->right = insertIntoBST(root->right, val);
-            
+           if (root->right != NULL) {
+                TreeNode* p = insertIntoBST(root->right, val);
+            }else{
+                root->right=new TreeNode(val);
+            }
         }
         return root;
     }
