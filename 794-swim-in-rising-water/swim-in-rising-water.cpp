@@ -19,7 +19,7 @@ public:
             
             for (auto [dr, dc] : directions) {
                 int nr = r + dr, nc = c + dc;
-                if (nr >= 0 && nr < m && nc >= 0 && nc < n ) {
+                if (nr >= 0 && nr < m && nc >= 0 && nc < n && !seen.count({nr, nc})) {
                     int new_d = max(max_d, grid[nr][nc]);
                     pq.push({new_d, nr, nc});
                 }
