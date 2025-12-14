@@ -18,20 +18,28 @@ public:
         return false;
     }
     vector<int> findOrder(int num, vector<vector<int>>& pre) {
-        vector<vector<int>> graph(num);
-        for (auto it : pre) {
-            graph[it[1]].push_back(it[0]);
-        }
-        vector<int> v(num, 0);
-        vector<int> pv(num, 0);
-        vector<int> ans;
-        for (int i = 0; i < num; i++) {
-            if (v[i] == 0) {
-                if (dfs(v, graph, i, ans,pv))
-                    return {};
-            } 
-        }
-        reverse(ans.begin(),ans.end());
-        return ans;
+       vector<vector<int>>adj(num);
+       vector<int>in(num,0);
+       for(auto it:pre){
+        adj[it[1]].push_back(it[0]);
+        in[it[0]]++;
+       }
+       queue<int>q;
+       for(int i=0;i<num;i++){
+        if(in[i]==0)q.push(i);
+       }
+       vector<int>ans;
+       while(!q.empty()){
+           auto f=q.front();
+           q.pop();
+           ans.push_back(f);
+           for(auto it:adj[f]){
+            in[it]--;
+            if(in[it]==0)q.push(it);
+           }
+       }
+       if(ans.size()==num)return ans;
+       return {};
+
     }
 };
