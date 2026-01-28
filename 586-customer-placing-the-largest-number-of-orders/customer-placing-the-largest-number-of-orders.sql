@@ -1,8 +1,2 @@
-WITH cts AS (
-    SELECT customer_number, COUNT(*) AS cnt
-    FROM orders
-    GROUP BY customer_number
-)
-SELECT customer_number
-FROM cts
-WHERE cnt = (SELECT MAX(cnt) FROM cts);
+
+select top 1 customer_number from orders group by customer_number order by count(customer_number) desc
